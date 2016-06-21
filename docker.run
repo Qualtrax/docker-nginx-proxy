@@ -1,0 +1,9 @@
+docker pull nginx 
+docker run -d \
+  --link upstream:upstream \
+  -v $PWD/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+  -v $PWD/certs:/etc/ssl/private:ro \
+  -p 80:80 \
+  -p 443:443 \
+  --name nginx-proxy \
+  nginx
